@@ -1,0 +1,59 @@
+map $cookie_XDEBUG_SESSION $my_fastcgi_pass {
+#    default unix:/run/php/php-fpm.sock;
+    default 127.0.0.1:9999;
+#    xdebug  127.0.0.1:9000;
+}
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html/public;
+
+    index index.html index.htm index.php;
+
+    access_log off;
+    error_log off;
+
+    server_name _;
+
+    charset utf-8;
+    client_max_body_size 100M;
+    client_body_timeout 120s;
+
+    location = /favicon.ico { log_not_found off; access_log off; }
+    location = /robots.txt  { log_not_found off; access_log off; }
+
+    # Enable php-fpm status page
+    location ~ ^/fpm/(status|ping)$ {
+        access_log off;
+
+        ## Only allow trusted IPs for security, deny everyone else
+        allow 127.0.0.1;
+        # allow 1.2.3.4;    # your IP here
+        deny all;
+
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        ## Now the port or socket of the php-fpm pool we want the status of
+        fastcgi_pass 127.0.0.1:9999;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass $my_fastcgi_pass;
+        include fastcgi.conf;
+        fastcgi_read_timeout 300;
+    }
+
+    error_page 404 /index.php;
+
+    location ~ /\.ht {
+        log_not_found off;
+        deny all;
+    }
+}

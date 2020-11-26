@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+php ${WORK_DIR}/artisan horizon

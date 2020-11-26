@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# If phpfpm xdebug instance not wanted, run fake tail service
+if [[ -z "${XDEBUG}" ]]
+then
+    touch /var/log/fpm-xdebug-tail
+    echo "PHP-FPM with Xdebug DISABLED"
+    exec tail -f /var/log/fpm-xdebug-tail
+    exit 0
+fi
+
+echo "####################"
+echo "#      XDEBUG      #"
+echo "####################"
+
+# Prevent defining xdebug INI location twice
+if [[ "${PHP_INI_SCAN_DIR}" != *"xdebug"* ]]; then
+    PHP_INI_SCAN_DIR=${PHP_INI_SCAN_DIR}:/p/xdebug
+fi
+
+sed -i 's/# \(.*xdebug.*\)/\1/' /etc/nginx/sites-available/default
+
+php-fpm${PHP_VERSION} \
+    --nodaemonize \
+    -d FPM.pid="/run/php/php-fpm-xdebug.pid" \
+    -d www.listen="0.0.0.0:9000"
