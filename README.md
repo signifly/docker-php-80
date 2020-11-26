@@ -1,3 +1,5 @@
+## Do not use yet. Pending official PHP8 release.
+
 Example usage of this base image in projects:
 
 ```Dockerfile
