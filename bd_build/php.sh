@@ -32,6 +32,7 @@ apt-get -q update && apt-get -qy install --no-install-recommends php${PHP_VERSIO
   php${PHP_VERSION}-curl \
   mcrypt unzip \
   php${PHP_VERSION}-odbc \
+  php-xml \
   php-pear \
   debconf-utils gcc build-essential unixodbc-dev nginx rsync unixodbc \
   && apt-get -qy autoremove \
@@ -47,11 +48,12 @@ echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
 # PHP7.4 preview instructions https://github.com/microsoft/msphpsql/pull/1062/files
 [[ $PHP_VERSION = "7.4" ]] && MSSQL_VERSION="-5.7.0preview" || MSSQL_VERSION=""
-[[ $PHP_VERSION = "8.0" ]] && MSSQL_VERSION="-5.9.0-preview1" || MSSQL_VERSION=""
+[[ $PHP_VERSION = "8.0" ]] && MSSQL_VERSION="-5.9.0beta2" || MSSQL_VERSION=""
 
+sed -i "$ s|\-n||g" /usr/bin/pecl
 pecl channel-update pecl.php.net
 pecl install sqlsrv${MSSQL_VERSION} pdo_sqlsrv${MSSQL_VERSION}
 
-apt-get -y remove php${PHP_VERSION}-dev php-pear debconf-utils gcc build-essential unixodbc-dev
+apt-get -y remove php${PHP_VERSION}-dev php-pear php-xml debconf-utils gcc build-essential unixodbc-dev
 
 rsync --remove-source-files -a /nginx-tmp/ /etc/nginx

@@ -37,7 +37,7 @@ chown -R www-data:www-data /var/www
 # Setup composer
 mkdir -p ${COMPOSER_HOME}/cache
 mkdir -p ${COMPOSER_HOME}/vendor
-composer global require hirak/prestissimo
+#composer global require hirak/prestissimo
 chmod -R 740 ${COMPOSER_HOME}
 chown -R www-data:www-data ${COMPOSER_HOME}
 

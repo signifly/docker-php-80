@@ -1,10 +1,10 @@
-ARG BASE_IMAGE=ubuntu:18.04
+ARG BASE_IMAGE=ubuntu:20.04
 
 FROM microsoft/mssql-tools as mssql
 FROM $BASE_IMAGE
 MAINTAINER Signifly <dev@signifly.com>
 
-ARG PHP_VERSION=7.4
+ARG PHP_VERSION=8.0
 
 ENV TZ=Europe/Copenhagen \
     DEBIAN_FRONTEND=noninteractive \
