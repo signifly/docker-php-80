@@ -7,12 +7,12 @@ set -x
 mv /etc/nginx /nginx-tmp
 
 apt-get -q update && apt-get -qy install --no-install-recommends php${PHP_VERSION}-fpm php${PHP_VERSION}-dev \
-  php-pcov \
+  php${PHP_VERSION}-pcov \
   php${PHP_VERSION}-gd \
   php${PHP_VERSION}-imagick \
   php${PHP_VERSION}-bcmath \
   php${PHP_VERSION}-bz2 \
-  php-igbinary \
+  php${PHP_VERSION}-igbinary \
   php${PHP_VERSION}-imap \
   php${PHP_VERSION}-intl \
   php${PHP_VERSION}-memcached \
@@ -30,9 +30,10 @@ apt-get -q update && apt-get -qy install --no-install-recommends php${PHP_VERSIO
   php${PHP_VERSION}-mbstring \
   php${PHP_VERSION}-zip \
   php${PHP_VERSION}-curl \
-  mcrypt unzip \
+  php${PHP_VERSION}-mcrypt \
+  unzip \
   php${PHP_VERSION}-odbc \
-  php-xml \
+  php${PHP_VERSION}-xml \
   php-pear \
   debconf-utils gcc build-essential unixodbc-dev nginx rsync unixodbc \
   && apt-get -qy autoremove \
