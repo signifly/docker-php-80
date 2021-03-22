@@ -1,6 +1,5 @@
 #!/bin/sh
 
-if [ -z "${DEV}" ]
-then
-  /utils/build.sh
-fi
+echo "Caching config"
+
+. /utils/cache-config.sh

@@ -29,6 +29,11 @@ case $ROLE in
     [[ -f ${cron} ]] && rm ${cron}
     ;;
 
+  migrate)
+    . /utils/migrate.sh
+    exit $?
+    ;;
+
   app)
     [[ -f ${app} ]] && rm ${app}
     [[ -f ${nginx} ]] && rm ${nginx}
@@ -40,5 +45,6 @@ case $ROLE in
 
   *)
     echo -n "unknown role"
+    exit 127
     ;;
 esac

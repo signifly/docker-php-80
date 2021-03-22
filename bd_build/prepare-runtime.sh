@@ -73,6 +73,7 @@ sed -r -i 's/listen = .*/listen = 127.0.0.1:9999/g' /etc/php/${PHP_VERSION}/fpm/
 
 sed -r -i 's/pm = .*/pm = static/g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 sed -r -i 's/pm.max_children = .*/pm.max_children = 10/g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+sed -r -i "s/;?clear_env = .*/clear_env = ${PHP_FPM_CLEAR_ENV}/g" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 sed -r -i 's/;?pm.status_path = .*/pm.status_path = \/fpm\/status/g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 sed -r -i 's/;?ping.path = .*/ping.path = \/fpm\/ping/g' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 

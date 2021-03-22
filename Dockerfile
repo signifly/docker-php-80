@@ -28,7 +28,8 @@ ENV TZ=Europe/Copenhagen \
     LC_ALL="en_US.UTF-8" \
     PHP_PM="static" \
     PHP_PM_MAX_CHILDREN="10" \
-    ROLE="app"
+    ROLE="app" \
+    PHP_FPM_CLEAR_ENV="no"
 
 COPY . /
 
