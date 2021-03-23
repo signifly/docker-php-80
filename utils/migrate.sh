@@ -2,7 +2,7 @@
 
 echo 'Starting migration'
 
-if [[ -d "/vault" ]]
+if [ -d "/vault" ]
 then
     echo "Vault present, killing process"
 
