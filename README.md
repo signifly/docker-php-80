@@ -1,4 +1,4 @@
-## Do not use yet. Pending official PHP8 release.
+## PHP 8.0 base image
 
 Example usage of this base image in projects:
 
