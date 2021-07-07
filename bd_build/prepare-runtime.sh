@@ -12,7 +12,7 @@ adduser --system --no-create-home --group --disabled-login php-fpm
 usermod -a -G services nginx
 usermod -a -G services php-fpm
 
-curl -sS https://getcomposer.org/installer | php -- --version=2.0.7 --install-dir=/usr/local/bin/ --filename=composer
+curl -sS https://getcomposer.org/installer | php -- --version=2.0.13 --install-dir=/usr/local/bin/ --filename=composer
 
 # Remove xdebug so it doesnt slow everything down
 echo '' > /etc/php/${PHP_VERSION}/mods-available/*xdebug.ini

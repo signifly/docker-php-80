@@ -3,7 +3,7 @@
 Example usage of this base image in projects:
 
 ```Dockerfile
-FROM signifly/php-8.0:0.1
+FROM signifly/php-8.0:<version>
 
 ARG BUILD_NUMBER
 ARG BUILD_VERSION
