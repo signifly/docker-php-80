@@ -1,6 +1,5 @@
 ARG BASE_IMAGE=ubuntu:20.04
 
-FROM microsoft/mssql-tools as mssql
 FROM $BASE_IMAGE
 MAINTAINER Signifly <dev@signifly.com>
 
