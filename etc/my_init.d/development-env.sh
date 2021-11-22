@@ -24,5 +24,5 @@ fi
 
 if [[ -n "${MIGRATE_ON_STARTUP}" ]]
 then
-  php ${WORK_DIR}/artisan migrate --force
+  /utils/migrate.sh
 fi
