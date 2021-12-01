@@ -35,10 +35,7 @@ apt-get -q update && apt-get -qy install --no-install-recommends php${PHP_VERSIO
   php${PHP_VERSION}-odbc \
   php${PHP_VERSION}-xml \
   php-pear \
-  debconf-utils gcc build-essential unixodbc-dev nginx rsync unixodbc \
-  && apt-get -qy autoremove \
-  && apt-get clean \
-  && rm -r /var/lib/apt/lists/*
+  debconf-utils gcc build-essential unixodbc-dev nginx rsync unixodbc
 
 source /etc/lsb-release
 curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
@@ -55,5 +52,8 @@ pecl channel-update pecl.php.net
 pecl install sqlsrv${MSSQL_VERSION} pdo_sqlsrv${MSSQL_VERSION}
 
 apt-get -y remove php${PHP_VERSION}-dev php-pear php-xml debconf-utils gcc build-essential unixodbc-dev
+apt-get -qy autoremove \
+  && apt-get clean \
+  && rm -r /var/lib/apt/lists/*
 
 rsync --remove-source-files -a /nginx-tmp/ /etc/nginx

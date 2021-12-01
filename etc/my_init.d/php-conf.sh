@@ -19,3 +19,8 @@ sed -r -i 's/pm.max_children = .*/pm.max_children = ${PHP_PM_MAX_CHILDREN}/g' /e
 sed -r -i "s/;?clear_env = .*/clear_env = ${PHP_FPM_CLEAR_ENV}/g" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
 sed -i "s#default unix:.*#default unix:/run/php/php${PHP_VERSION}-fpm.sock;#g" /etc/nginx/sites-available/default
+
+if [[ -n "${DEV}" ]]
+then
+  sed -i "s/#\(.*add_header.*\)/\1/g" /etc/nginx/sites-available/default
+fi
